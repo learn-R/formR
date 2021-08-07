@@ -83,6 +83,5 @@ var.labels = setNames(as.character(run$label), run$item_name)
 
 Hmisc::label(data) = as.list(var.labels[match(names(data), names(var.labels))])
 
-
 # Save --------------------------------------------------------------------
 saveRDS(data, file = "output/data-surveys.rds")
