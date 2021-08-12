@@ -76,7 +76,10 @@ data <- run %>% filter(!type %in% c("note", "submit", "iframenote", "note_feedba
   mutate_at(vars(contains("beforer_")), list(~car::recode(.,c("1='Estadística';2='Difícil';3='Versátil';4='Cuantitativo';5='Sencillo';6='Necesario';7='Incomprensible';8='Accesible';9='Gratis'")))) %>% 
   mutate_at(vars(c("use_r", "instalation_r")), list(~car::recode(., c("1='Si';2='No';3='No lo sé'", as.factor = T,
                                                          levels = c("No", "Si", "No lo sé"))))) %>% 
-  mutate(class_asistance = car::recode(.$class_asistance, c("0='No';1='Si'"), as.factor = T))
+  mutate(class_asistance = car::recode(.$class_asistance, c("0='No';1='Si'"), as.factor = T)) %>% 
+  separate(aprendi, sep = ",", into =c("aprendi_1", "aprendi_2","aprendi_3",
+                                        "aprendi_4", "aprendi_5"), convert = T) %>% 
+  mutate_at(vars(contains("aprendi_")), list(~car::recode(.,c("1='Colaboración y reproducibilidad';2='Procesamiento y manipulación de datos';3='Análisis descriptivo';4='Análisis regresión y otras técnicas';5='Reportes y visualización datos'"))))
 
 # Label data --------------------------------------------------------------
 var.labels = setNames(as.character(run$label), run$item_name)
