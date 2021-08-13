@@ -70,10 +70,6 @@ aprendi <- uah %>% select(1:number_reporte) %>%
   mutate(aprendi1 = aprendi) %>% 
   column_to_rownames(var = "aprendi1")
 
-set.seed(186353609)
-
-wordcloud2::wordcloud2(aprendi)
-
 uah %>% select(1:number_reporte) %>% 
   pivot_longer(cols =c(aprendi_1:aprendi_5), names_to = "number_mention", values_to = "aprendi") %>%
   filter(!is.na(aprendi)) %>% 
